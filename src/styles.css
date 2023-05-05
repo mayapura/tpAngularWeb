@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+.fondo {
+    background-image: url("../src/assets/img/paven.png");
+    height: 100%;
+}

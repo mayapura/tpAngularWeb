@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-lg-8 col-md-9 col-sm-10 mx-auto">
+        <div class="card text-bg-light mb-3 ">
+            <div class="card-header">Formulario</div>
+            <div class="card-body mx-3">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="dni" class="form-label">DNI</label>
+                        <input name="dni" type="text" class="form-control" id="dni" placeholder="Ingrese DNI" [(ngModel)]="ticket.dni">
+                    </div>
+                    <div class="mb-3">
+                        <label for="precioReal" class="form-label">Precio Real</label>
+                        <input name="precioReal" type="text" class="form-control" id="precioReal" placeholder="ingrese el precio real" [(ngModel)]="ticket.precioReal">
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Tipo de expectador</label>
+                        <select name="tipoEspectador" id="tipoEspectador" class="form-control" [(ngModel)]="ticket.tipoEspectador" (change)="calcularDescuento()">
+                      <!--      <option value="s" selected>Seleccionar un tipo</option>-->
+                            <option value="l">Local</option>
+                            <option value="e">Extranjero</option>
+                        </select>
+                    </div>
+
+                    <div class="" *ngIf="mostrar">
+                        <label class="alert-success my-3">Total a pagar: {{precioCobrado}}</label>
+                    </div>
+                    <!--                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mx-3 mb-3">Enviar</button>
+                        <button type="button" class="btn btn-primary mx-3 mb-3">Limpiar</button>
+                    </div>-->
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mx-3" (click)="guardarTicket()" *ngIf="accion=='new'">Guardar</button>
+                        <button type="button" class="btn btn-primary mx-3" (click)="actualizarTicket()" *ngIf="accion=='update'">Actualizar</button>
+                        <button type="button" class="btn btn-primary mx-3" (click)="limpiar()">Limpiar</button>
+                        <button type="button" class="btn btn-primary mx-3" (click)="volver()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

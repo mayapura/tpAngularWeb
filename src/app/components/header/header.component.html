@@ -1,0 +1,25 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="page-a.html">
+                <img src="../../../assets/img/logo.png" alt="" width="40" height="34" class="d-inline-block align-text-top"> Programación y Servicios Web
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav d-flex justify-content-evenly">
+                    <li class="nav-item">
+                        <a [routerLink]="['punto1']" routerLinkActive="router-link-active" class="nav-link" aria-current="page">Punto # 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['punto2']" routerLinkActive="router-link-active" class="nav-link">Punto # 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['punto5']" routerLinkActive="router-link-active" class="nav-link" href="page-b.html">Punto # 5</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

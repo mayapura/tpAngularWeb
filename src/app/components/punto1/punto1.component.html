@@ -1,0 +1,46 @@
+<div class="container row mx-auto pt-2 px-lg-5 px-md-4 px-sm-3 text-center mb-5">
+    <h2>Productos</h2>
+
+    <!-- Button trigger modal -->
+    <div class="row mx-auto">
+        <button class="btn btn-primary mx-auto" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">({{cantidad}})&nbsp;<i class="fas fa-shopping-cart"></i> &nbsp;Carrito de compras</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Carrito de compras</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul *ngFor="let producto of carritos" class="list-group list-group-flush">
+                        <li class="list-group-item text-start border-bottom"><img src="assets/img/{{producto.imagen}}" class="img-thumbnail" style="max-width: 100px;">&nbsp;{{producto.nombre}}&nbsp;$ {{producto.precio}}</li>
+                    </ul>
+                    <br>
+                    <h5>Total a pagar $ {{total}}</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Ver detalles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-3 mx-auto">
+        <div *ngFor="let producto of productos" class="col">
+            <div class="card h-100 my-auto">
+                <img src="assets/img/{{producto.imagen}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">${{producto.precio}}</h5>
+                    <p>{{producto.nombre}}<br>{{producto.descripcion}}</p>
+                </div>
+                <div class="card-footer">
+                    <button (click)="agregarProducto(producto)" class="btn btn-primary"><i class="fas fa-plus">&nbsp;</i>Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br><br><br>

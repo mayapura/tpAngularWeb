@@ -1,0 +1,29 @@
+<div class="container row mx-auto pt-2 text-center">
+    <h2>Juego</h2>
+    <div class="card col-lg-8 col-md-9 col-sm-10 m-auto text-center mt-3 mb-3">
+        <div class="card-header">
+            Juego de las palabras
+        </div>
+        <div class="card-body row mb-4">
+            <h5 class="card-title my-3">¿Cuantas {{opcion}} tiene la siguiente palabra?<br><br>{{palabra.nombre}}</h5>
+            <img class="col-xl-8 col-md-9 col-sm-10 m-auto mb-4 p-auto" src="card-img" src="assets/img/{{palabra.imagen}}">
+
+            <div *ngIf="alertSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{alertMsg}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div *ngIf="alertDanger" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{alertMsg}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div *ngFor="let respuesta of respuestas" class="d-grid gap-2 col-7 mb-2 mx-auto">
+                <button (click)="seleccion(respuesta)" [disabled]="deshabilitar" class="btn btn-dark" type="button">{{respuesta}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <button (click)="siguiente()" type="button" class="btn btn-primary"><i class="fas fa-play"></i>&nbsp;Play</button>
+    </div>
+</div><br><br><br><br>
