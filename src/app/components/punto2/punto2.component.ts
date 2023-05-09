@@ -21,6 +21,11 @@ export class Punto2Component implements OnInit {
   alertDanger: boolean = false;
   alertMsg: string = "";
   deshabilitar: boolean =false;
+  aciertos:number = 0;
+  errores:number = 0;
+  mostrarBtnSig:boolean=false;
+  mostrarReiniciar:boolean=false;
+  mostrarBtnResult:boolean=false;
 
 
   constructor() {
@@ -45,7 +50,6 @@ export class Punto2Component implements OnInit {
     this.respuestas = new Array<Number>();
 
     this.iniciar();
-  
    }
 
    iniciar(){
@@ -53,8 +57,8 @@ export class Punto2Component implements OnInit {
     this.palabra = this.palabras[this.indicePalabra];
     this.indiceOpcion =this.determinarAleatorio(this.opciones.length, 0);
     this.opcion = this.opciones[this.indiceOpcion];
-
     this.cargarRespuesta();
+    this.contador++;
    }
 
    cargarRespuesta(){
@@ -137,43 +141,74 @@ export class Punto2Component implements OnInit {
       this.alertSuccess = false;
       this.alertDanger = false;
       let primerCaracter = this.opcion.charAt(0);
+      if(this.contador<=7){
+        this.mostrarBtnSig = true;
+      }else{
+        this.mostrarBtnSig=false;
+        this.mostrarReiniciar = true;
+        this.mostrarBtnResult=true;
+      }
       if (primerCaracter == 'V') {
         if (this.contarVocales(this.palabra.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, "")) == rta) {
           this.alertSuccess = true;
           this.alertMsg = msgSuccess;
+          this.aciertos++;
         } else {
           this.alertDanger = true;
           this.alertMsg = msgDanger;
+          this.errores++;
         }
       } else if (primerCaracter == 'C') {
         if (this.contarConsonantes(this.palabra.nombre) == rta) {
           this.alertSuccess = true;
           this.alertMsg = msgSuccess;
+          this.aciertos++;
         } else {
           this.alertDanger = true;
           this.alertMsg = msgDanger;
+          this.errores++;
         }
       } else if (primerCaracter == 'S') {
         if (this.contarSilabas(this.palabra.nombre) == rta) {
           this.alertSuccess = true;
           this.alertMsg = msgSuccess;
+          this.aciertos++;
         } else {
           this.alertDanger = true;
           this.alertMsg = msgDanger;
+          this.errores++;
         }
       }else{
         if(this.contarLetras(this.palabra.nombre) == rta){
           this.alertSuccess = true;
-          this.alertMsg = msgSuccess;         
+          this.alertMsg = msgSuccess;
+          this.aciertos++;         
         }else{
           this.alertDanger = true;
           this.alertMsg = msgDanger;
+          this.errores++;
         }
       }
       this.deshabilitar = true;
     }
   
     siguiente() {
+      if(this.contador<=7){
+        this.iniciar();
+        this.deshabilitar = false;
+        this.alertDanger = false;
+        this.alertSuccess = false;
+        this.mostrarBtnSig = false;
+      }
+    }
+
+    reiniciar(){
+      this.contador = 0;
+      this.aciertos = 0;
+      this.errores = 0;
+      this.mostrarBtnSig = true;
+      this.mostrarReiniciar = false;
+      this.mostrarBtnResult = false;
       this.alertDanger = false;
       this.alertSuccess = false;
       this.deshabilitar = false;

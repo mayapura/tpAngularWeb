@@ -18,12 +18,42 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
+
+
+            <!-- Button trigger modal 
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Launch static backdrop modal
+            </button>-->
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Resultados</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Cantidad de aciertos: {{aciertos}}</p>
+                            <p>Cantidad de errores: {{errores}}</p>
+                            <p>Cantidad de respuestas: {{contador}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div *ngFor="let respuesta of respuestas" class="d-grid gap-2 col-7 mb-2 mx-auto">
                 <button (click)="seleccion(respuesta)" [disabled]="deshabilitar" class="btn btn-dark" type="button">{{respuesta}}</button>
             </div>
         </div>
     </div>
     <div class="card-footer text-muted">
-        <button (click)="siguiente()" type="button" class="btn btn-primary"><i class="fas fa-play"></i>&nbsp;Play</button>
+        <button *ngIf="mostrarBtnSig" (click)="siguiente()" type="button" class="btn btn-primary"><i class="fas fa-play"></i>&nbsp;Play</button>
+        <button *ngIf="mostrarReiniciar" (click)="reiniciar()" type="button" class="btn btn-primary mx-2"><i class="fas fa-play"></i>&nbsp;Reiniciar</button>
+        <button *ngIf="mostrarBtnResult" type="button" class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class="bi bi-card-list"></i>&nbsp;Mostrar Resultados
+        </button>
     </div>
 </div><br><br><br><br>
